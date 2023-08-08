@@ -108,6 +108,25 @@
         }
     </style>
     <script>
+        $(document).ready(function () {
+            show_users();
+        });
+        function save_comment() {
+            let name = $('#name').val()
+            let mbti = $('#mbti').val()
+            let comment = $('#comment').val()
+            let tmi = $('#tmi').val()
+
+            let formData = new FormData()
+            formData.append("name_give", name)
+            formData.append("mbti_give", mbti)
+            formData.append("comment_give", comment)
+            formData.append("tmi_give", tmi)
+            fetch('/index_이기호', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+                alert(data["msg"]);
+                window.location.reload()
+            });
+        }
 
         function open_box() {
             $('#post-box').show()
@@ -163,7 +182,7 @@
                 <a onclick="posting()" type="button"><img src="images/gray-circle.png">
                     <p>Add</p>
                 </a>
-                <a href="index_list.html"><img src="images/gray-circle.png">
+                <a href="/"><img src="images/gray-circle.png">
                     <p>Home</p>
                 </a>
             </div>
