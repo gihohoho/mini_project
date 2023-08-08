@@ -5,4 +5,4 @@ from pymongo import MongoClient
 client = MongoClient('')
 db = client.dbsparta
 
-# install 안했음
+# install 안했음 코드수정 테스트
