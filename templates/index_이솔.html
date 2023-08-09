@@ -65,7 +65,7 @@
         }
 
         .shortcut-links a img {
-            width: 70px;
+            width: 80px;
             margin-right: 20px;
         }
 
@@ -83,12 +83,17 @@
             margin: 20px auto 0px auto;
             padding: 10px;
             box-shadow: 0px 0px 3px 0px gray;
-
+            margin-bottom: 20px;
             display: none;
         }
         .btnbox {
             width: 1rm;
             height: 3.5vh;
+        }
+        .btnbox button {
+            margin-left: 10px;
+            font-size: 15px;
+            font-weight: bolder;
         }
     </style>
     <script>
@@ -178,23 +183,24 @@
                     <label>부가 설명</label>
                 </div>
                 <div class="btnbox">
-                    <button onclick="close_box()" type="button" class="btn btn-secondary ms-1">CANCEL</button>
-                    <button onclick="save_detail()" type="button" class="btn btn-primary">ADD</button>
+                    <button onclick="close_box()" type="button" class="btn btn-outline-dark">CANCEL</button>
+                    <button onclick="save_detail()" type="button" class="btn btn-dark"> ADD </button>
                 </div>
             </div>
+
             <div class="mycards" id="comment-list">
             </div>
         </div>
         <div class="sidebar">
             <div class="shortcut-links">
                 <!-- update 버튼 추가 -->
-                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../static/images/gray-circle.png">
+                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../static/images/update.png">
                     <p>Update</p>
                 </a>
-                <a onclick="open_box()"><img src="../static/images/gray-circle.png">
+                <a onclick="open_box()"><img src="../static/images/create.png">
                     <p>Create</p>
                 </a>
-                <a href="/"><img src="../static/images/gray-circle.png">
+                <a href="/"><img src="../static/images/Home.png">
                     <p>Home</p>
                 </a>
             </div>
