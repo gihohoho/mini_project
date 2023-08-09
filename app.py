@@ -88,4 +88,3 @@ def wook_post():
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
-# install 안했음 코드수정 테스트
