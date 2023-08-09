@@ -56,7 +56,6 @@ def ho_ud_post():
 @app.route('/index_ho', methods=['GET'])
 def read_ho():
     info = list(db.team_ho.find({}, {'_id': False}))
-    print(info)
     return jsonify({'info_ho': info})
 
 
