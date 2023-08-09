@@ -151,6 +151,9 @@
         </div>
         <div class="sidebar">
             <div class="shortcut-links">
+                <!-- update 버튼 추가 -->
+                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../static/images/gray-circle.png">
+                    <p>Update</p>
                 </a>
                 <a onclick="open_box()"><img src="../static/images/gray-circle.png">
                     <p>Create</p>
@@ -167,6 +170,34 @@
             </div>
         </div>
     </div>
+
+    <!-- update 클릭 시 생기는 모달 폼 -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">수정할 내용을 입력해 주세요.</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3">
+                    <div class="col-12">
+                    <label for="inputAddress" class="form-label" >수정할 목록</label>
+                    <input type="text" class="form-control"  placeholder="특기" id="ud_detail">
+                    </div>
+                    <div class="col-12">
+                    <label for="inputAddress2" class="form-label" >수정 내용</label>
+                    <input type="text" class="form-control"  placeholder="코딩" id="ud_description">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+              <button type="button" class="btn btn-primary" onclick="save_update()">수정하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>
