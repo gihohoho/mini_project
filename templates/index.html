@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
     <title>스파르타 피디아</title>
 
@@ -37,7 +37,7 @@
             justify-content: center;
         }
 
-        .mytitle>button {
+        .mytitle > button {
             width: 200px;
             height: 50px;
 
@@ -50,7 +50,7 @@
             margin-top: 10px;
         }
 
-        .mytitle>button:hover {
+        .mytitle > button:hover {
             border: 2px solid white;
         }
 
@@ -82,128 +82,112 @@
 
             margin-top: 20px;
         }
-
-        .mybtns>button {
+        .mybtns > button {
             margin-right: 10px;
         }
     </style>
     <script>
-        $(document).ready(function () {
-            listing();
+        $(document).ready(function(){
+          listing();
         });
 
         function listing() {
-            $('#cards-box').empty()
-            fetch('http://spartacodingclub.shop/web/api/movie')
-                .then(response => response.json())
-                .then(data => {
-                    // console.log(data)
-                    let movies = data['movies']
-                    movies.forEach(movie => {
-                        //console.log(movie)
-                        let title = movie['title']
-                        let image = movie['image']
-                        let desc = movie['desc']
-                        let comment = movie['comment']
-
-                        let temp_html = `<div class="col">
-                                            <div class="card h-100">
-                                                <img src="${image}"
-                                                     class="card-img-top">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${title}</h5>
-                                                    <p class="card-text">${desc}</p>
-                                                    <p class="mycomment">${comment}</p>
-                                                </div>
-                                            </div>
-                                        </div>`
-
-                        $('#cards-box').append(temp_html)
-                    })
-                })
+            fetch('/movie').then((res) => res.json()).then((data) => {
+            console.log(data)
+            alert(data['msg'])
+            })
         }
 
-        function open_box() {
+        function posting() {
+						let formData = new FormData();
+            formData.append("sample_give", "샘플데이터");
+
+            fetch('/movie', {method : "POST",body : formData}).then((res) => res.json()).then((data) => {
+            console.log(data)
+            alert(data['msg'])
+            })
+        }
+
+        function open_box(){
             $('#post-box').show()
         }
-        function close_box() {
+        function close_box(){
             $('#post-box').hide()
         }
     </script>
 </head>
 
 <body>
-    <div class="mytitle">
-        <h1>내 생애 최고의 영화들</h1>
-        <button onclick="open_box()">영화 기록하기</button>
+<div class="mytitle">
+    <h1>내 생애 최고의 영화들</h1>
+    <button onclick="open_box()">영화 기록하기</button>
+</div>
+<div class="mypost" id="post-box">
+    <div class="form-floating mb-3">
+        <input id="url" type="email" class="form-control" placeholder="name@example.com">
+        <label>영화URL</label>
     </div>
-    <div class="mypost" id="post-box">
-        <div class="form-floating mb-3">
-            <input id="url" type="email" class="form-control" placeholder="name@example.com">
-            <label>영화URL</label>
-        </div>
-
-        <div class="form-floating">
-            <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
-            <label for="floatingTextarea2">코멘트</label>
-        </div>
-        <div class="mybtns">
-            <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-        </div>
+    <div class="form-floating">
+        <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+        <label for="floatingTextarea2">코멘트</label>
     </div>
-    <div class="mycards">
-        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">나의 한줄 평을 씁니다</p>
-                    </div>
+    <div class="mybtns">
+        <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
+        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+    </div>
+</div>
+<div class="mycards">
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+        <div class="col">
+            <div class="card h-100">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                    <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
+                    <p>⭐⭐⭐</p>
+                    <p class="mycomment">나의 한줄 평을 씁니다</p>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">나의 한줄 평을 씁니다</p>
-                    </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                    <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
+                    <p>⭐⭐⭐</p>
+                    <p class="mycomment">나의 한줄 평을 씁니다</p>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">나의 한줄 평을 씁니다</p>
-                    </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                    <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
+                    <p>⭐⭐⭐</p>
+                    <p class="mycomment">나의 한줄 평을 씁니다</p>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">나의 한줄 평을 씁니다</p>
-                    </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                     class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">영화 제목이 들어갑니다</h5>
+                    <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
+                    <p>⭐⭐⭐</p>
+                    <p class="mycomment">나의 한줄 평을 씁니다</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>
