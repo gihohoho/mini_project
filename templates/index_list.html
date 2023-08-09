@@ -57,7 +57,16 @@
         .playlist {
             font-size: 25px;
             margin-left: 30px;
-            color: floralwhite;
+            color: rgb(255, 230, 230);
+        }
+
+        .about_playlist {
+            float: right;
+            margin-right: 25px;
+            text-decoration-line: none;
+            color: rgb(255, 230, 230);
+            font-size: 18px;
+            text-align: center;
         }
 
         .user-icon {
@@ -65,6 +74,15 @@
             border-radius: 20%;
             margin-right: 20px;
             float: left;
+        }
+
+        .playlist hr {
+            border: 0;
+            height: 3px;
+            background: #f0f0f0;
+            width: 95%;
+            margin-top: 30px;
+            margin-bottom: 40px;
         }
     </style>
 
@@ -97,16 +115,19 @@
 
 <body>
     <div class="mypost">
-        <div class="playlist">Play list</div>
+        <div class="playlist">[Play list] 우리집 고양이도 듣는 띵곡 모음
+            <a class="about_playlist">4곡 ∙ ∙ ∙ 14분 32초</a>
+            <hr>
+        </div>
         <div class="mycards" id="comment-list">
             <div class="card">
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <button type="button" onclick="window.location.href='/index_이기호.html'"
                             class="btn btn-light">▶️</button>
-                        <img src="../static/images/Jack.png" class="user-icon">
+                        <img src="../static/images/giho.png" class="user-icon">
                         <p>이기호</p>
-                        <footer class="blockquote-footer">조장</footer>
+                        <footer class="blockquote-footer"> 조장 ∙ 내겐 어려운 코딩 ( feat. 스파르타 )</footer>
                     </blockquote>
                 </div>
             </div>
@@ -116,8 +137,9 @@
                         <button type="button" onclick="window.location.href='/index_이솔.html'"
                             class="btn btn-light">▶️</button>
                         <img src="../static/images/Jack.png" class="user-icon">
+                        <!-- 이미지1:1 비율로 올리기 -->
                         <p>이솔</p>
-                        <footer class="blockquote-footer">조장</footer>
+                        <footer class="blockquote-footer">조원 ∙ 낭만고양이 ( feat. 체리필터 )</footer>
                     </blockquote>
                 </div>
             </div>
@@ -127,8 +149,9 @@
                         <button type="button" onclick="window.location.href='/index_김정규.html'"
                             class="btn btn-light">▶️</button>
                         <img src="../static/images/Jack.png" class="user-icon">
+                        <!-- 이미지1:1 비율로 올리기 -->
                         <p>김정규</p>
-                        <footer class="blockquote-footer">조장</footer>
+                        <footer class="blockquote-footer">조원 ∙ 닥치고 스쿼트</footer>
                     </blockquote>
                 </div>
             </div>
@@ -138,8 +161,9 @@
                         <button type="button" onclick="window.location.href='/index_이제욱.html'"
                             class="btn btn-light">▶️</button>
                         <img src="../static/images/Jack.png" class="user-icon">
+                        <!-- 이미지1:1 비율로 올리기 -->
                         <p>이제욱</p>
-                        <footer class="blockquote-footer">조장</footer>
+                        <footer class="blockquote-footer">조원 ∙ T 사이의 F</footer>
                     </blockquote>
                 </div>
             </div>
