@@ -13,7 +13,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <title>초미니홈피 - 팬명록</title>
+    <title>제욱</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
         rel="stylesheet" />
@@ -78,25 +78,6 @@
             text-decoration-line: none;
         }
 
-        .subscribed-list h3 {
-            margin: 20px 0;
-            color: #5a5a5a;
-        }
-
-        .subscribed-list a {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            width: fit-content;
-            flex-wrap: wrap;
-        }
-
-        .subscribed-list a img {
-            width: 25px;
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-
         .mypost {
             width: 95%;
             max-width: 700px;
@@ -126,6 +107,12 @@
         function close_box() {
             $('#post-box').hide()
         }
+
+        function deleteRow(ths) {
+            var ths = $(ths);
+
+            ths.parents("tr").remove();
+        }
     </script>
 </head>
 
@@ -147,6 +134,9 @@
                 <div class="card">
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
+                            <div class="btn-text-right">
+                                <button type="button" class="btn btn-light">✖️</button>
+                            </div>
                             <p>qqqqqqqqqqqqqqqqqqqq</p>
                             <footer class="blockquote-footer">dsadasdwfwfa</footer>
                         </blockquote>
@@ -155,6 +145,9 @@
                 <div class="card">
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
+                            <div class="btn-text-right">
+                                <button type="button" class="btn btn-light">✖️</button>
+                            </div>
                             <p>mnmnmnmds</p>
                             <footer class="blockquote-footer">dsmvbadvb</footer>
                         </blockquote>
