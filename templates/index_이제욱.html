@@ -101,6 +101,18 @@
                 window.location.reload()
             });
         }
+        function save_update() {
+            let ud_detail = $('#ud_detail').val()
+            let ud_description = $('#ud_description').val()
+
+            let formData = new FormData()
+            formData.append("ud_detail_give", ud_detail)
+            formData.append("ud_description_give", ud_description)
+            fetch('/index_wook_update', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+                alert(data["msg"]);
+                window.location.reload()
+            });
+        }
         function open_box() {
             $('#post-box').show()
         }
@@ -115,12 +127,12 @@
         <div class="mypost_list">
             <div class="mypost" id="post-box">
                 <div class="form-floating mb-3">
-                    <input id="url" type="email" class="form-control" placeholder="name@example.com">
+                    <input id="detail" type="email" class="form-control" placeholder="name@example.com">
                     <label>추가 사항</label>
                 </div>
 
                 <div class="form-floating">
-                    <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+                    <textarea id="description" class="form-control" placeholder="Leave a comment here"></textarea>
                     <label for="floatingTextarea2">부가 설명</label>
                 </div>
             </div>
@@ -151,6 +163,7 @@
         </div>
         <div class="sidebar">
             <div class="shortcut-links">
+                <!-- update 버튼 추가 -->
                 <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../static/images/gray-circle.png">
                     <p>Update</p>
                 <a onclick="open_box()"><img src="../static/images/gray-circle.png">
@@ -159,7 +172,7 @@
                 <a onclick="close_box()" type="button"><img src="../static/images/gray-circle.png">
                     <p>Cancel</p>
                 </a>
-                <a onclick="posting()" type="button"><img src="../static/images/gray-circle.png">
+                <a onclick="save_detail()" type="button"><img src="../static/images/gray-circle.png">
                     <p>Add</p>
                 </a>
                 <a href="/"><img src="../static/images/gray-circle.png">
