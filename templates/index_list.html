@@ -39,7 +39,7 @@
             width: 95%;
             max-width: 800px;
             margin: auto;
- 
+
         }
 
         .mycards>.card {
@@ -47,61 +47,27 @@
             margin-bottom: 20px;
             background-color: #fafafa;
         }
+
         button {
             float: right;
             margin-top: 10px;
 
         }
 
-        .sidebar {
-            background: #fff;
-            width: 15%;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            padding-left: 5%;
-            padding-top: 25%;
-            font-size: 30px;
-        }
-
-        .shortcut-links a img {
-            width: 70px;
-            margin-right: 20px;
-        }
-
-        .shortcut-links a {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            width: fit-content;
-            flex-wrap: wrap;
-            text-decoration-line: none;
-        }
-
-        .subscribed-list h3 {
-            margin: 20px 0;
-            color: #5a5a5a;
-        }
-
-        .subscribed-list a {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            width: fit-content;
-            flex-wrap: wrap;
-        }
-
-        .subscribed-list a img {
-            width: 25px;
-            border-radius: 50%;
-            margin-right: 20px;
-        }
         .playlist {
             font-size: 25px;
             margin-left: 30px;
-            color:floralwhite;
+            color: floralwhite;
+        }
+
+        .user-icon {
+            width: 60px;
+            border-radius: 20%;
+            margin-right: 20px;
+            float: left;
         }
     </style>
+
     <script>
         $(document).ready(function () {
             set_temp();
@@ -136,7 +102,9 @@
             <div class="card">
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                        <button type="button" onclick="window.location.href='/index_이기호.html'"class="btn btn-light">▶️</button>
+                        <button type="button" onclick="window.location.href='/index_이기호.html'"
+                            class="btn btn-light">▶️</button>
+                        <img src="../static/images/Jack.png" class="user-icon">
                         <p>이기호</p>
                         <footer class="blockquote-footer">조장</footer>
                     </blockquote>
@@ -145,23 +113,31 @@
             <div class="card">
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                        <button type="button" onclick="window.location.href='/index_이솔.html'"class="btn btn-light">▶️</button>
+                        <button type="button" onclick="window.location.href='/index_이솔.html'"
+                            class="btn btn-light">▶️</button>
+                        <img src="../static/images/Jack.png" class="user-icon">
                         <p>이솔</p>
                         <footer class="blockquote-footer">조장</footer>
                     </blockquote>
                 </div>
-            </div><div class="card">
+            </div>
+            <div class="card">
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                        <button type="button" onclick="window.location.href='/index_김정규.html'"class="btn btn-light">▶️</button>
+                        <button type="button" onclick="window.location.href='/index_김정규.html'"
+                            class="btn btn-light">▶️</button>
+                        <img src="../static/images/Jack.png" class="user-icon">
                         <p>김정규</p>
                         <footer class="blockquote-footer">조장</footer>
                     </blockquote>
                 </div>
-            </div><div class="card">
+            </div>
+            <div class="card">
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                        <button type="button" onclick="window.location.href='/index_이제욱.html'"class="btn btn-light">▶️</button>
+                        <button type="button" onclick="window.location.href='/index_이제욱.html'"
+                            class="btn btn-light">▶️</button>
+                        <img src="../static/images/Jack.png" class="user-icon">
                         <p>이제욱</p>
                         <footer class="blockquote-footer">조장</footer>
                     </blockquote>
