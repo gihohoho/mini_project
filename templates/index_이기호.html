@@ -108,21 +108,14 @@
         }
     </style>
     <script>
-        $(document).ready(function () {
-            show_users();
-        });
-        function save_comment() {
-            let name = $('#name').val()
-            let mbti = $('#mbti').val()
-            let comment = $('#comment').val()
-            let tmi = $('#tmi').val()
+        function save_detail() {
+            let detail = $('#detail').val()
+            let description = $('#description').val()
 
             let formData = new FormData()
-            formData.append("name_give", name)
-            formData.append("mbti_give", mbti)
-            formData.append("comment_give", comment)
-            formData.append("tmi_give", tmi)
-            fetch('/index_이기호', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+            formData.append("detail_give", detail)
+            formData.append("description_give", description)
+            fetch('/index_ho', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
                 alert(data["msg"]);
                 window.location.reload()
             });
@@ -142,12 +135,12 @@
         <div class="mypost_list">
             <div class="mypost" id="post-box">
                 <div class="form-floating mb-3">
-                    <input id="url" type="email" class="form-control" placeholder="name@example.com">
+                    <input id="detail" type="email" class="form-control" placeholder="name@example.com">
                     <label>추가 사항</label>
                 </div>
 
                 <div class="form-floating">
-                    <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+                    <textarea id="description" class="form-control" placeholder="Leave a comment here"></textarea>
                     <label for="floatingTextarea2">부가 설명</label>
                 </div>
             </div>
@@ -173,16 +166,16 @@
         <div class="sidebar">
             <div class="shortcut-links">
                 </a>
-                <a onclick="open_box()"><img src="images/gray-circle.png">
+                <a onclick="open_box()"><img src="../static/images/gray-circle.png">
                     <p>Create</p>
                 </a>
-                <a onclick="close_box()" type="button"><img src="images/gray-circle.png">
+                <a onclick="close_box()" type="button"><img src="../static/images/gray-circle.png">
                     <p>Cancel</p>
                 </a>
-                <a onclick="posting()" type="button"><img src="images/gray-circle.png">
+                <a onclick="save_detail()" type="button"><img src="../static/images/gray-circle.png">
                     <p>Add</p>
                 </a>
-                <a href="/"><img src="images/gray-circle.png">
+                <a href="/"><img src="../static/images/gray-circle.png">
                     <p>Home</p>
                 </a>
             </div>
