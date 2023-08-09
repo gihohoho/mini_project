@@ -100,7 +100,18 @@
                 window.location.reload()
             });
         }
+        function save_update() {
+            let ud_detail = $('#ud_detail').val()
+            let ud_description = $('#ud_description').val()
 
+            let formData = new FormData()
+            formData.append("ud_detail_give", ud_detail)
+            formData.append("ud_description_give", ud_description)
+            fetch('/index_ho_update', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+                alert(data["msg"]);
+                window.location.reload()
+            });
+        }
         function open_box() {
             $('#post-box').show()
         }
