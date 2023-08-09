@@ -108,7 +108,18 @@
         }
     </style>
     <script>
+        function save_detail() {
+            let detail = $('#detail').val()
+            let description = $('#description').val()
 
+            let formData = new FormData()
+            formData.append("detail_give", detail)
+            formData.append("description_give", description)
+            fetch('/index_gyu', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+                alert(data["msg"]);
+                window.location.reload()
+            });
+        }
         function open_box() {
             $('#post-box').show()
         }
@@ -123,12 +134,12 @@
         <div class="mypost_list">
             <div class="mypost" id="post-box">
                 <div class="form-floating mb-3">
-                    <input id="url" type="email" class="form-control" placeholder="name@example.com">
+                    <input id="detail" type="email" class="form-control" placeholder="name@example.com">
                     <label>추가 사항</label>
                 </div>
 
                 <div class="form-floating">
-                    <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+                    <textarea id="description" class="form-control" placeholder="Leave a comment here"></textarea>
                     <label for="floatingTextarea2">부가 설명</label>
                 </div>
             </div>
@@ -154,16 +165,16 @@
         <div class="sidebar">
             <div class="shortcut-links">
                 </a>
-                <a onclick="open_box()"><img src="images/gray-circle.png">
+                <a onclick="open_box()"><img src="../static/images/gray-circle.png">
                     <p>Create</p>
                 </a>
-                <a onclick="close_box()" type="button"><img src="images/gray-circle.png">
+                <a onclick="close_box()" type="button"><img src="../static/images/gray-circle.png">
                     <p>Cancel</p>
                 </a>
-                <a onclick="posting()" type="button"><img src="images/gray-circle.png">
+                <a onclick="save_detail()" type="button"><img src="../static/images/gray-circle.png">
                     <p>Add</p>
                 </a>
-                <a href="index_list.html"><img src="images/gray-circle.png">
+                <a href="/"><img src="../static/images/gray-circle.png">
                     <p>Home</p>
                 </a>
             </div>
