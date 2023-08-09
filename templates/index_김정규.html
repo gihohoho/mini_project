@@ -86,8 +86,57 @@
             margin-bottom: 20px;
             display: none;
         }
+        .btnbox {
+            width: 1rm;
+            height: 3.5vh;
+        }
+        .btnbox button {
+            margin-left: 10px;
+            font-size: 15px;
+            font-weight: bolder;
+        }
     </style>
     <script>
+        $(document).ready(function () {
+            showInfo();
+        });
+        function showInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/index_gyu",
+                data: {},
+                success: function (response) {
+                    let info = response['info_gyu']
+                    for (let i = 0; i < info.length; i++) {
+                        let detail = info[i]['detail']
+                        let description = info[i]['description']
+
+                        let temp_html = `<div class="card">
+                                            <div class="card-body">
+                                                <blockquote class="blockquote mb-0">
+                                                    <div class="btn-text-right">
+                                                        <button onclick="deleteInfo('${detail}')" type="button" class="btn btn-light">✖️</button>
+                                                    </div>
+                                                    <p>${detail}</p>
+                                                    <footer class="blockquote-footer">${description}</footer>
+                                                </blockquote>
+                                            </div>
+                                        </div>`
+                        $('#comment-list').append(temp_html)
+                    }
+                }
+            })
+        }
+        function deleteInfo(detail) {
+            $.ajax({
+                type: "POST",
+                url: "/index_gyu/delete",
+                data: {detail_give:detail},
+                success: function (response) {
+                    window.location.reload();
+                }
+            })
+        }
         function save_detail() {
             let detail = $('#detail').val()
             let description = $('#description').val()
@@ -96,6 +145,18 @@
             formData.append("detail_give", detail)
             formData.append("description_give", description)
             fetch('/index_gyu', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
+                alert(data["msg"]);
+                window.location.reload()
+            });
+        }
+        function save_update() {
+            let ud_detail = $('#ud_detail').val()
+            let ud_description = $('#ud_description').val()
+
+            let formData = new FormData()
+            formData.append("ud_detail_give", ud_detail)
+            formData.append("ud_description_give", ud_description)
+            fetch('/index_gyu_update', { method: "POST", body: formData, }).then((res) => res.json()).then((data) => {
                 alert(data["msg"]);
                 window.location.reload()
             });
@@ -114,51 +175,31 @@
         <div class="mypost_list">
             <div class="mypost" id="post-box">
                 <div class="form-floating mb-3">
-                    <input id="detail" type="email" class="form-control" placeholder="name@example.com">
+                    <input id="detail" type="email" class="form-control" placeholder="추가 사항">
                     <label>추가 사항</label>
                 </div>
 
                 <div class="form-floating">
-                    <textarea id="description" class="form-control" placeholder="Leave a comment here"></textarea>
-                    <label for="floatingTextarea2">부가 설명</label>
+                    <textarea id="description" class="form-control" placeholder="부가 설명"></textarea>
+                    <label>부가 설명</label>
+                </div>
+                <div class="btnbox">
+                    <button onclick="close_box()" type="button" class="btn btn-outline-dark">CANCEL</button>
+                    <button onclick="save_detail()" type="button" class="btn btn-dark"> ADD </button>
                 </div>
             </div>
 
             <div class="mycards" id="comment-list">
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <div class="btn-text-right">
-                                <button type="button" class="btn btn-light">✖️</button>
-                            </div>
-                            <p>dddddddddd</p>
-                            <footer class="blockquote-footer">dddddddd</footer>
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <div class="btn-text-right">
-                                <button type="button" class="btn btn-light">✖️</button>
-                            </div>
-                            <p>aaaaaaaaaaa</p>
-                            <footer class="blockquote-footer">aaaaaaaaaa</footer>
-                        </blockquote>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="sidebar">
             <div class="shortcut-links">
+                <!-- update 버튼 추가 -->
+                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../static/images/update.png">
+                    <p>Update</p>
+                </a>
                 <a onclick="open_box()"><img src="../static/images/create.png">
                     <p>Create</p>
-                </a>
-                <a onclick="close_box()" type="button"><img src="../static/images/cancel.png">
-                    <p>Cancel</p>
-                </a>
-                <a onclick="save_detail()" type="button"><img src="../static/images/Add.png">
-                    <p>Add</p>
                 </a>
                 <a href="/"><img src="../static/images/Home.png">
                     <p>Home</p>
@@ -166,6 +207,34 @@
             </div>
         </div>
     </div>
+
+    <!-- update 클릭 시 생기는 모달 폼 -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">수정할 내용을 입력해 주세요.</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3">
+                    <div class="col-12">
+                    <label for="inputAddress" class="form-label" >수정할 목록</label>
+                    <input type="text" class="form-control"  placeholder="특기" id="ud_detail">
+                    </div>
+                    <div class="col-12">
+                    <label for="inputAddress2" class="form-label" >수정 내용</label>
+                    <input type="text" class="form-control"  placeholder="코딩" id="ud_description">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+              <button type="button" class="btn btn-primary" onclick="save_update()">수정하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>
