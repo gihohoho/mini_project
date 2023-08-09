@@ -10,13 +10,13 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 
     <title>기호</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-        rel="stylesheet" />
+          rel="stylesheet"/>
     <style>
         * {
             font-family: "Noto Serif KR", serif;
@@ -86,8 +86,52 @@
 
             display: none;
         }
+        .btnbox {
+            width: 1rm;
+            height: 3.5vh;
+        }
     </style>
     <script>
+        $(document).ready(function () {
+            showInfo();
+        });
+        function showInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/index_ho",
+                data: {},
+                success: function (response) {
+                    let info = response['info_ho']
+                    for (let i = 0; i < info.length; i++) {
+                        let detail = info[i]['detail']
+                        let description = info[i]['description']
+
+                        let temp_html = `<div class="card">
+                                            <div class="card-body">
+                                                <blockquote class="blockquote mb-0">
+                                                    <div class="btn-text-right">
+                                                        <button onclick="deleteInfo('${detail}')" type="button" class="btn btn-light">✖️</button>
+                                                    </div>
+                                                    <p>${detail}</p>
+                                                    <footer class="blockquote-footer">${description}</footer>
+                                                </blockquote>
+                                            </div>
+                                        </div>`
+                        $('#comment-list').append(temp_html)
+                    }
+                }
+            })
+        }
+        function deleteInfo(detail) {
+            $.ajax({
+                type: "POST",
+                url: "/index_ho/delete",
+                data: {detail_give:detail},
+                success: function (response) {
+                    window.location.reload();
+                }
+            })
+        }
         function save_detail() {
             let detail = $('#detail').val()
             let description = $('#description').val()
@@ -115,38 +159,20 @@
         <div class="mypost_list">
             <div class="mypost" id="post-box">
                 <div class="form-floating mb-3">
-                    <input id="detail" type="email" class="form-control" placeholder="name@example.com">
+                    <input id="detail" type="email" class="form-control" placeholder="추가 사항">
                     <label>추가 사항</label>
                 </div>
 
                 <div class="form-floating">
-                    <textarea id="description" class="form-control" placeholder="Leave a comment here"></textarea>
-                    <label for="floatingTextarea2">부가 설명</label>
+                    <textarea id="description" class="form-control" placeholder="부가 설명"></textarea>
+                    <label>부가 설명</label>
+                </div>
+                <div class="btnbox">
+                    <button onclick="close_box()" type="button" class="btn btn-secondary ms-1">CANCEL</button>
+                    <button onclick="save_detail()" type="button" class="btn btn-primary">ADD</button>
                 </div>
             </div>
             <div class="mycards" id="comment-list">
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <div class="btn-text-right">
-                                <button type="button" class="btn btn-light">✖️</button>
-                            </div>
-                            <p>MBTI</p>
-                            <footer class="blockquote-footer">INTJ</footer>
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <div class="btn-text-right">
-                                <button type="button" class="btn btn-light">✖️</button>
-                            </div>
-                            <p>취미</p>
-                            <footer class="blockquote-footer">운동</footer>
-                        </blockquote>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="sidebar">
@@ -157,12 +183,6 @@
                 </a>
                 <a onclick="open_box()"><img src="../static/images/gray-circle.png">
                     <p>Create</p>
-                </a>
-                <a onclick="close_box()" type="button"><img src="../static/images/gray-circle.png">
-                    <p>Cancel</p>
-                </a>
-                <a onclick="save_detail()" type="button"><img src="../static/images/gray-circle.png">
-                    <p>Add</p>
                 </a>
                 <a href="/"><img src="../static/images/gray-circle.png">
                     <p>Home</p>
