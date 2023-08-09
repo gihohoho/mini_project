@@ -13,7 +13,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <title>초미니홈피 - 팬명록</title>
+    <title>제욱</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
         rel="stylesheet" />
@@ -78,25 +78,6 @@
             text-decoration-line: none;
         }
 
-        .subscribed-list h3 {
-            margin: 20px 0;
-            color: #5a5a5a;
-        }
-
-        .subscribed-list a {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            width: fit-content;
-            flex-wrap: wrap;
-        }
-
-        .subscribed-list a img {
-            width: 25px;
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-
         .mypost {
             width: 95%;
             max-width: 700px;
@@ -134,12 +115,12 @@
         <div class="mypost_list">
             <div class="mypost" id="post-box">
                 <div class="form-floating mb-3">
-                    <input id="detail" type="email" class="form-control" placeholder="name@example.com">
+                    <input id="url" type="email" class="form-control" placeholder="name@example.com">
                     <label>추가 사항</label>
                 </div>
 
                 <div class="form-floating">
-                    <textarea id="description" class="form-control" placeholder="Leave a comment here"></textarea>
+                    <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
                     <label for="floatingTextarea2">부가 설명</label>
                 </div>
             </div>
@@ -147,6 +128,9 @@
                 <div class="card">
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
+                            <div class="btn-text-right">
+                                <button type="button" class="btn btn-light">✖️</button>
+                            </div>
                             <p>qqqqqqqqqqqqqqqqqqqq</p>
                             <footer class="blockquote-footer">dsadasdwfwfa</footer>
                         </blockquote>
@@ -155,6 +139,9 @@
                 <div class="card">
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
+                            <div class="btn-text-right">
+                                <button type="button" class="btn btn-light">✖️</button>
+                            </div>
                             <p>mnmnmnmds</p>
                             <footer class="blockquote-footer">dsmvbadvb</footer>
                         </blockquote>
@@ -172,7 +159,7 @@
                 <a onclick="close_box()" type="button"><img src="../static/images/gray-circle.png">
                     <p>Cancel</p>
                 </a>
-                <a onclick="save_detail()" type="button"><img src="../static/images/gray-circle.png">
+                <a onclick="posting()" type="button"><img src="../static/images/gray-circle.png">
                     <p>Add</p>
                 </a>
                 <a href="/"><img src="../static/images/gray-circle.png">

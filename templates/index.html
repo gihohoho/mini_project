@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,22 +86,27 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="carousel-container">
             <div id="memberCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F147AF1574D7ECCED23" class="d-block w-100" alt="멤버 1">
+                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F147AF1574D7ECCED23"
+                            class="d-block w-100" alt="멤버 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F127AF1574D7ECCEC22" class="d-block w-100" alt="멤버 2">
+                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F127AF1574D7ECCEC22"
+                            class="d-block w-100" alt="멤버 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F157AF1574D7ECCED24" class="d-block w-100" alt="멤버 3">
+                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F157AF1574D7ECCED24"
+                            class="d-block w-100" alt="멤버 3">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://storage.enuri.info/pic_upload/knowbox2/070645396201709152257c02c-34d1-4b1c-8f6e-eb507eea68b5.jpg" class="d-block w-100" alt="멤버 4">
+                        <img src="https://storage.enuri.info/pic_upload/knowbox2/070645396201709152257c02c-34d1-4b1c-8f6e-eb507eea68b5.jpg"
+                            class="d-block w-100" alt="멤버 4">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#memberCarousel" role="button" data-slide="prev">
@@ -169,13 +175,13 @@
 
         function saveComments() {
             var comments = document.querySelectorAll(".comment p");
-            comments.forEach(function(comment, index) {
+            comments.forEach(function (comment, index) {
                 localStorage.setItem("comment" + (index + 1), comment.textContent);
             });
             alert("코멘트가 저장되었습니다.");
         }
 
-        window.onload = function() {
+        window.onload = function () {
             for (var i = 1; i <= 3; i++) {
                 var savedComment = localStorage.getItem("comment" + i);
                 if (savedComment) {
@@ -185,4 +191,5 @@
         };
     </script>
 </body>
+
 </html>
