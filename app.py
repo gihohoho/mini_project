@@ -22,22 +22,34 @@ def ho_post():
     detail_receive = request.form['detail_give']
     description_receive = request.form['description_give']
 
-    doc = {
-        'detail': detail_receive,
-        'description': description_receive
-    }
-    db.team_ho.insert_one(doc)
+    if detail_receive == "" :
+        return jsonify({'msg': '목록을 입력해 주세요!'})
+    elif description_receive == "" :
+        return jsonify({'msg': '목록의 내용을 입력해 주세요!'})
+    else :
+        doc = {
+            'detail':detail_receive,
+            'description':description_receive
+        } 
+        db.team_ho.insert_one(doc)
 
-    return jsonify({'msg': '저장완료!'})
+        return jsonify({'msg': '저장완료!'})
 # 수정 기능
 @app.route("/index_ho_update", methods=["POST"])
 def ho_ud_post():
     ud_detail_receive = request.form['ud_detail_give']
     ud_description_receive = request.form['ud_description_give']
 
-    db.team_ho.update_one({'detail': ud_detail_receive},{'$set':{'description':ud_description_receive}})
+    if ud_detail_receive == "" :
+        return jsonify({'msg': '수정할 목록을 입력해 주세요!'})
+    elif ud_description_receive == "" :
+        return jsonify({'msg': '수정 내용을 입력해 주세요!'})
+    elif list(db.team_ho.find({ 'detail' : ud_detail_receive })) == []:
+        return jsonify({'msg': '입력하신 목록은 없습니다. 다시 입력해 주세요!'})
+    else :
+        db.team_ho.update_one({'detail': ud_detail_receive},{'$set':{'description':ud_description_receive}})
 
-    return jsonify({'msg': '수정완료!'})
+        return jsonify({'msg': '수정완료!'})
 
 
 # ho 서버에 저장한 정보 가져오기
@@ -66,22 +78,34 @@ def sol_post():
     detail_receive = request.form['detail_give']
     description_receive = request.form['description_give']
 
-    doc = {
-        'detail': detail_receive,
-        'description': description_receive
-    }
-    db.team_sol.insert_one(doc)
+    if detail_receive == "" :
+        return jsonify({'msg': '목록을 입력해 주세요!'})
+    elif description_receive == "" :
+        return jsonify({'msg': '목록의 내용을 입력해 주세요!'})
+    else :
+        doc = {
+            'detail':detail_receive,
+            'description':description_receive
+        } 
+        db.team_sol.insert_one(doc)
 
-    return jsonify({'msg': '저장완료!'})
+        return jsonify({'msg': '저장완료!'})
 # 수정 기능
 @app.route("/index_sol_update", methods=["POST"])
 def sol_ud_post():
     ud_detail_receive = request.form['ud_detail_give']
     ud_description_receive = request.form['ud_description_give']
 
-    db.team_sol.update_one({'detail': ud_detail_receive},{'$set':{'description':ud_description_receive}})
+    if ud_detail_receive == "" :
+        return jsonify({'msg': '수정할 목록을 입력해 주세요!'})
+    elif ud_description_receive == "" :
+        return jsonify({'msg': '수정 내용을 입력해 주세요!'})
+    elif list(db.team_sol.find({ 'detail' : ud_detail_receive })) == []:
+        return jsonify({'msg': '입력하신 목록은 없습니다. 다시 입력해 주세요!'})
+    else :
+        db.team_sol.update_one({'detail': ud_detail_receive},{'$set':{'description':ud_description_receive}})
 
-    return jsonify({'msg': '수정완료!'})
+        return jsonify({'msg': '수정완료!'})
 
 # sol 서버에 저장한 정보 가져오기
 @app.route('/index_sol', methods=['GET'])
@@ -107,22 +131,34 @@ def gyu_post():
     detail_receive = request.form['detail_give']
     description_receive = request.form['description_give']
 
-    doc = {
-        'detail': detail_receive,
-        'description': description_receive
-    }
-    db.team_gyu.insert_one(doc)
+    if detail_receive == "" :
+        return jsonify({'msg': '목록을 입력해 주세요!'})
+    elif description_receive == "" :
+        return jsonify({'msg': '목록의 내용을 입력해 주세요!'})
+    else :
+        doc = {
+            'detail':detail_receive,
+            'description':description_receive
+        } 
+        db.team_gyu.insert_one(doc)
 
-    return jsonify({'msg': '저장완료!'})
+        return jsonify({'msg': '저장완료!'})
 # 수정 기능
 @app.route("/index_gyu_update", methods=["POST"])
 def gyu_ud_post():
     ud_detail_receive = request.form['ud_detail_give']
     ud_description_receive = request.form['ud_description_give']
 
-    db.team_gyu.update_one({'detail': ud_detail_receive},{'$set':{'description':ud_description_receive}})
+    if ud_detail_receive == "" :
+        return jsonify({'msg': '수정할 목록을 입력해 주세요!'})
+    elif ud_description_receive == "" :
+        return jsonify({'msg': '수정 내용을 입력해 주세요!'})
+    elif list(db.team_gyu.find({ 'detail' : ud_detail_receive })) == []:
+        return jsonify({'msg': '입력하신 목록은 없습니다. 다시 입력해 주세요!'})
+    else :
+        db.team_gyu.update_one({'detail': ud_detail_receive},{'$set':{'description':ud_description_receive}})
 
-    return jsonify({'msg': '수정완료!'})
+        return jsonify({'msg': '수정완료!'})
 
 # gyu 서버에 저장한 정보 가져오기
 @app.route('/index_gyu', methods=['GET'])
@@ -149,22 +185,34 @@ def wook_post():
     detail_receive = request.form['detail_give']
     description_receive = request.form['description_give']
 
-    doc = {
-        'detail': detail_receive,
-        'description': description_receive
-    }
-    db.team_wook.insert_one(doc)
+    if detail_receive == "" :
+        return jsonify({'msg': '목록을 입력해 주세요!'})
+    elif description_receive == "" :
+        return jsonify({'msg': '목록의 내용을 입력해 주세요!'})
+    else :
+        doc = {
+            'detail':detail_receive,
+            'description':description_receive
+        } 
+        db.team_wook.insert_one(doc)
 
-    return jsonify({'msg': '저장완료!'})
+        return jsonify({'msg': '저장완료!'})
 # 수정 기능
 @app.route("/index_wook_update", methods=["POST"])
 def wook_ud_post():
     ud_detail_receive = request.form['ud_detail_give']
     ud_description_receive = request.form['ud_description_give']
 
-    db.team_wook.update_one({'detail': ud_detail_receive},{'$set':{'description':ud_description_receive}})
+    if ud_detail_receive == "" :
+        return jsonify({'msg': '수정할 목록을 입력해 주세요!'})
+    elif ud_description_receive == "" :
+        return jsonify({'msg': '수정 내용을 입력해 주세요!'})
+    elif list(db.team_wook.find({ 'detail' : ud_detail_receive })) == []:
+        return jsonify({'msg': '입력하신 목록은 없습니다. 다시 입력해 주세요!'})
+    else :
+        db.team_wook.update_one({'detail': ud_detail_receive},{'$set':{'description':ud_description_receive}})
 
-    return jsonify({'msg': '수정완료!'})
+        return jsonify({'msg': '수정완료!'})
 
 # 서버에 저장한 정보 가져오기
 @app.route('/index_wook', methods=['GET'])
