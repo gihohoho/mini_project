@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Jua&display=swap');
+
+        * {
+            font-family: 'Jua', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        .carousel-container {
+            background-color: #f2f2f2;
+            max-width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            text-align: center;
+        }
+
+        .carousel-item img {
+            max-height: 80vh;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .introduction {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        .comment-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 20px;
+            color: white;
+            font-size: 14px;
+            width: 550px;
+        }
+
+        .comment-input {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .edit-btn {
+            font-size: 12px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            margin-top: 10px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="carousel-container">
+            <div id="memberCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F147AF1574D7ECCED23" class="d-block w-100" alt="멤버 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F127AF1574D7ECCEC22" class="d-block w-100" alt="멤버 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F157AF1574D7ECCED24" class="d-block w-100" alt="멤버 3">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://storage.enuri.info/pic_upload/knowbox2/070645396201709152257c02c-34d1-4b1c-8f6e-eb507eea68b5.jpg" class="d-block w-100" alt="멤버 4">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#memberCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">이전</span>
+                </a>
+                <a class="carousel-control-next" href="#memberCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">다음</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="introduction">
+            <h2>안녕하세요! 저희는 팀이름은 살쾡이들입니다.</h2>
+            <p>고양이와 운동을 좋아하는 공통점을 가져서 살쾡이로 지었습니다 여러분과 함께 멋진 시간을 만들어나가고 싶습니다.</p>
+        </div>
+
+        <div class="comment-container">
+            <div class="comment">
+                <h6>멤버 1 코멘트:</h6>
+                <p id="comment1">멤버 1에 대한 코멘트를 입력하세요.</p>
+                <div class="edit-btn" onclick="editComment(1)">수정</div>
+            </div>
+            <div class="comment">
+                <h6>멤버 2 코멘트:</h6>
+                <p id="comment2">멤버 2에 대한 코멘트를 입력하세요.</p>
+                <div class="edit-btn" onclick="editComment(2)">수정</div>
+            </div>
+            <div class="comment">
+                <h6>멤버 3 코멘트:</h6>
+                <p id="comment3">멤버 3에 대한 코멘트를 입력하세요.</p>
+                <div class="edit-btn" onclick="editComment(3)">수정</div>
+            </div>
+        </div>
+
+        <div class="form-floating mt-3">
+            <textarea class="form-control comment-input" placeholder="코멘트를 적어주세요." id="commentInput"></textarea>
+            <label for="commentInput">코멘트 입력</label>
+            <button class="btn btn-light mt-2" onclick="addComment()">코멘트 남기기</button>
+            <button class="btn btn-light mt-2 btn-save" onclick="saveComments()">저장</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function editComment(memberNumber) {
+            var comment = prompt("코멘트를 입력하세요:", document.getElementById("comment" + memberNumber).textContent);
+            if (comment !== null) {
+                document.getElementById("comment" + memberNumber).textContent = comment;
+            }
+        }
+
+        function addComment() {
+            var newComment = document.getElementById("commentInput").value;
+            if (newComment !== "") {
+                var newCommentElement = document.createElement("div");
+                newCommentElement.className = "comment";
+                newCommentElement.innerHTML = `<h6>새 코멘트:</h6><p>${newComment}</p><div class="edit-btn" onclick="editComment(4)">수정</div>`;
+                document.querySelector(".comment-container").appendChild(newCommentElement);
+                document.getElementById("commentInput").value = "";
+            }
+        }
+
+        function saveComments() {
+            var comments = document.querySelectorAll(".comment p");
+            comments.forEach(function(comment, index) {
+                localStorage.setItem("comment" + (index + 1), comment.textContent);
+            });
+            alert("코멘트가 저장되었습니다.");
+        }
+
+        window.onload = function() {
+            for (var i = 1; i <= 3; i++) {
+                var savedComment = localStorage.getItem("comment" + i);
+                if (savedComment) {
+                    document.getElementById("comment" + i).textContent = savedComment;
+                }
+            }
+        };
+    </script>
+</body>
+</html>
