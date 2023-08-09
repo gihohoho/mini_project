@@ -89,6 +89,47 @@
         }
     </style>
     <script>
+        $(document).ready(function () {
+            showInfo();
+        });
+        function showInfo() {
+            $.ajax({
+                type: "GET",
+                url: "/index_wook",
+                data: {},
+                success: function (response) {
+                    let info = response['info_wook']
+                    for (let i = 0; i < info.length; i++) {
+                        let detail = info[i]['name']
+                        let description = info[i]['comment']
+
+                        let temp_html = `<div class="card">
+                                            <div class="card-body">
+                                                <blockquote class="blockquote mb-0">
+                                                    <div class="btn-text-right">
+                                                        <button onclick="deleteInfo('${detail}')" type="button" class="btn btn-light">✖️</button>
+                                                    </div>
+                                                    <p>${detail}</p>
+                                                    <footer class="blockquote-footer">${description}</footer>
+                                                </blockquote>
+                                            </div>
+                                        </div>`
+                        $('#comment-list').append(temp_html)
+                    }
+                }
+            })
+        }
+        function deleteInfo(name) {
+            $.ajax({
+                type: "POST",
+                url: "/index_wook/delete",
+                data: {name_give:name},
+                success: function (response) {
+                    alert(response["msg"]);
+                    window.location.reload();
+                }
+            })
+        }
         function save_detail() {
             let detail = $('#detail').val()
             let description = $('#description').val()
@@ -137,28 +178,6 @@
                 </div>
             </div>
             <div class="mycards" id="comment-list">
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <div class="btn-text-right">
-                                <button type="button" class="btn btn-light">✖️</button>
-                            </div>
-                            <p>qqqqqqqqqqqqqqqqqqqq</p>
-                            <footer class="blockquote-footer">dsadasdwfwfa</footer>
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <div class="btn-text-right">
-                                <button type="button" class="btn btn-light">✖️</button>
-                            </div>
-                            <p>mnmnmnmds</p>
-                            <footer class="blockquote-footer">dsmvbadvb</footer>
-                        </blockquote>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="sidebar">
